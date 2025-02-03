@@ -1,0 +1,18 @@
+
+bdalab@mcalab04-06:~$ hdfs dfs -mkdir /user/220968020/test
+bdalab@mcalab04-06:~$ hdfs dfs -rm -r /user/220968020/test
+Deleted /user/220968020/test
+
+bdalab@mcalab04-06:~$ hdfs dfs -put /home/bdalab/Desktop/open_it /user/220968020/
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/open_it
+Ah, Hadoop – the modern-day hero of big data, because who doesn't love the idea of managing and processing petabytes of data across a cluster of machines that probably need more attention than a toddler with a sugar rush? Just like a magician pulling rabbits out of a hat, Hadoop somehow transforms raw, chaotic data into something vaguely meaningful. Sure, it requires Java, MapReduce, and a whole bunch of configuration files that even your system administrator needs a roadmap to navigate. But hey, when it works, it's a data powerhouse, scaling across nodes like a multitasking ninja. So, embrace the complexity! After all, if Hadoop wasn’t slightly confusing, it wouldn't be real big data, right? Keep calm and let your data run—across all those nodes, with the comforting hum of distributed file systems in the background. Who needs simplicity when you have the thrill of managing a cluster?
+
+bdalab@mcalab04-06:~$ hdfs dfs -get /user/220968020/open_it /home/bdalab/Desktop/open_it_copy
+
+bdalab@mcalab04-06:~$ hdfs dfs -cp /user/220968020/open_it /user/shriya/
+
+bdalab@mcalab04-06:~$ hdfs dfs -ls /user/220968020/open_it 
+-rw-r--r--   1 bdalab supergroup        904 2025-01-06 15:40 /user/220968020/open_it
+bdalab@mcalab04-06:~$ hdfs dfs -ls /user/220968020/bird.png 
+-rw-r--r--   1 bdalab supergroup      48098 2025-01-06 15:32 /user/220968020/bird.png
+

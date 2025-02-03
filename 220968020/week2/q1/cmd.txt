@@ -1,0 +1,367 @@
+
+bdalab@mcalab04-06:~$ hdfs dfs -mkdir /user/220968020/week2
+
+dalab@mcalab04-06:~$ hdfs dfs -put /home/bdalab/file.txt /user/220968020/week2/
+bdalab@mcalab04-06:~$ hdfs dfs -ls /user/220968020/week2/file.txt
+-rw-r--r--   1 bdalab supergroup         51 2025-01-20 15:12 /user/220968020/week2/file.txt
+bdalab@mcalab04-06:~$ hdfs dfs -chmod 644 /user/your_hdfs_user/lab2/File1.txt
+chmod: `/user/your_hdfs_user/lab2/File1.txt': No such file or directory
+bdalab@mcalab04-06:~$ hdfs dfs -chmod 644 /user/220968020/week2/file.txt
+bdalab@mcalab04-06:~$ #This gives the owner (user) read-write (rw-) permissions, and the group and others read-only (r--) permissions.
+bdalab@mcalab04-06:~$ hdfs dfs -ls /user/220968020/week2/file.txt
+-rw-r--r--   1 bdalab supergroup         51 2025-01-20 15:12 /user/220968020/week2/file.txt
+bdalab@mcalab04-06:~$ #check ownership of file
+
+bdalab@mcalab04-06:~$ hdfs dfs -put LargeFile.txt /user/220968020/week2/
+
+bdalab@mcalab04-06:~$ hdfs fsck /user/220968020/week2/LargeFile.txt
+Connecting to namenode via http://localhost:9870/fsck?ugi=bdalab&path=%2Fuser%2F220968020%2Fweek2%2FLargeFile.txt
+FSCK started by bdalab (auth:SIMPLE) from /127.0.0.1 for path /user/220968020/week2/LargeFile.txt at Mon Jan 20 15:35:14 IST 2025
+
+
+Status: HEALTHY
+ Number of data-nodes:	1
+ Number of racks:		1
+ Total dirs:			0
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	79800000 B
+ Total files:	1
+ Total blocks (validated):	1 (avg. block size 79800000 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Mon Jan 20 15:35:14 IST 2025 in 1 milliseconds
+
+
+The filesystem under path '/user/220968020/week2/LargeFile.txt' is HEALTHY
+bdalab@mcalab04-06:~$ 
+
+
+hdfs dfs -ls /user/220968020/week2/LargeFile.txt
+-rw-r--r--   1 bdalab supergroup   79800000 2025-01-20 15:18 /user/220968020/week2/LargeFile.txt
+bdalab@mcalab04-06:~$ #1 here is the replication factor
+bdalab@mcalab04-06:~$ 
+
+Replication 3 set: /user/220968020/week2/LargeFile.txt
+Waiting for /user/220968020/week2/LargeFile.txt .........................bbbbbbbbbdalab@mc
+
+bdalab@mcalab04-06:~$ hdfs dfs -du /user/220968020/week2/LargeFile.txt
+79800000  239400000  /user/220968020/week2/LargeFile.txt
+bdalab@mcalab04-06:~$ hdfs dfs -du /user/220968020/week2/file.txt
+51  51  /user/220968020/week2/file.txt
+
+bdalab@mcalab04-06:~$ hdfs dfs -df
+Filesystem                     Size      Used     Available  Use%
+hdfs://localhost:9000  154249338880  81055744  118206574592    0%
+bdalab@mcalab04-06:~
+
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/LargeFile.txt | wc -l
+400000
+
+
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/LargeFile.txt | wc -l
+400000
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/LargeFile.txt | grep -o 'number' | wc -l
+700000
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/LargeFile.txt | grep -o 'numbr' | wc -l
+0
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/LargeFile.txt | grep -o 'numbers' | wc -l
+500000
+
+Explanation:
+hdfs dfs -cat: Displays the content of analytics.txt.
+grep -o 'Hadoop': The grep -o option searches for the word "Hadoop" and outputs only the matching words (one word per line).
+| wc -l: This counts the number of occurrences by counting the number of lines output by the grep command, which corresponds to the number of times "Hadoop" appears in the file.
+
+
+---------------------
+
+bdalab@mcalab04-06:~$ cat file.txt | python3 mapper.py
+how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?how	1
+random	1
+are	1
+the	1
+numbers	1
+you	1
+randomly	1
+generated?	1
+bdalab@mcalab04-06:~$ 
+
+
+
+
+
+
+
+dalab@mcalab04-06:~$ cat file.txt | python3 mapper.py | sort | python3 reducer.py
+are	10
+generated?	1
+generated?how	9
+how	1
+numbers	10
+random	10
+randomly	10
+the	10
+you	10
+bdalab@mcalab04-06:~$
+
+
+
+
+
+
+
+
+bdalab@mcalab04-06:~$ hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.1.jar wordcount /user/220968020/week2/LargeFile.txt /user/220968020/week2/output
+2025-01-20 16:21:31,246 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at /0.0.0.0:8032
+2025-01-20 16:21:31,513 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/bdalab/.staging/job_1737362868754_0001
+2025-01-20 16:21:31,695 INFO input.FileInputFormat: Total input files to process : 1
+2025-01-20 16:21:31,746 INFO mapreduce.JobSubmitter: number of splits:1
+2025-01-20 16:21:31,826 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1737362868754_0001
+2025-01-20 16:21:31,826 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2025-01-20 16:21:31,948 INFO conf.Configuration: resource-types.xml not found
+2025-01-20 16:21:31,948 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2025-01-20 16:21:32,325 INFO impl.YarnClientImpl: Submitted application application_1737362868754_0001
+2025-01-20 16:21:32,383 INFO mapreduce.Job: The url to track the job: http://mcalab04-06:8088/proxy/application_1737362868754_0001/
+2025-01-20 16:21:32,384 INFO mapreduce.Job: Running job: job_1737362868754_0001
+2025-01-20 16:21:37,456 INFO mapreduce.Job: Job job_1737362868754_0001 running in uber mode : false
+2025-01-20 16:21:37,458 INFO mapreduce.Job:  map 0% reduce 0%
+2025-01-20 16:21:47,545 INFO mapreduce.Job:  map 100% reduce 0%
+2025-01-20 16:21:51,567 INFO mapreduce.Job:  map 100% reduce 100%
+2025-01-20 16:21:51,585 INFO mapreduce.Job: Job job_1737362868754_0001 completed successfully
+2025-01-20 16:21:51,665 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=5485
+		FILE: Number of bytes written=626969
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=79800121
+		HDFS: Number of bytes written=1169
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=7641
+		Total time spent by all reduces in occupied slots (ms)=1484
+		Total time spent by all map tasks (ms)=7641
+		Total time spent by all reduce tasks (ms)=1484
+		Total vcore-milliseconds taken by all map tasks=7641
+		Total vcore-milliseconds taken by all reduce tasks=1484
+		Total megabyte-milliseconds taken by all map tasks=7824384
+		Total megabyte-milliseconds taken by all reduce tasks=1519616
+	Map-Reduce Framework
+		Map input records=400000
+		Map output records=11200000
+		Map output bytes=124500000
+		Map output materialized bytes=1097
+		Input split bytes=121
+		Combine input records=11200312
+		Combine output records=390
+		Reduce input groups=78
+		Reduce shuffle bytes=1097
+		Reduce input records=78
+		Reduce output records=78
+		Spilled Records=468
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=80
+		CPU time spent (ms)=9230
+		Physical memory (bytes) snapshot=732635136
+		Virtual memory (bytes) snapshot=5221588992
+		Total committed heap usage (bytes)=727187456
+		Peak Map Physical memory (bytes)=502362112
+		Peak Map Virtual memory (bytes)=2611556352
+		Peak Reduce Physical memory (bytes)=230273024
+		Peak Reduce Virtual memory (bytes)=2610032640
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=79800000
+	File Output Format Counters 
+		Bytes Written=1169
+bdalab@mcalab04-06:~$ hdfs dfs -cat /user/220968020/week2/output/part-r-00000
+(LCG)	100000
+(PRNGs)	100000
+Congruential	100000
+Generation	100000
+Generator	100000
+LCG	100000
+Linear	100000
+Mersenne	200000
+Number	100000
+PRNGs	200000
+Pseudo-random	100000
+Random	200000
+The	200000
+These	100000
+Twister	200000
+While	100000
+a	300000
+achieve	100000
+algorithm.	100000
+algorithms	100000
+algorithms.	100000
+and	200000
+appear	100000
+applications	100000
+approximate	100000
+are	200000
+be	200000
+but	100000
+can	200000
+commonly	100000
+computational	100000
+computing.	100000
+difficult	100000
+exact	100000
+generated	100000
+generates	100000
+generating	100000
+generation	100000
+generators	100000
+high-quality	100000
+in	300000
+include	100000
+is	400000
+linear	100000
+long	100000
+most	100000
+necessary	100000
+not	100000
+number	200000
+numbers	500000
+of	300000
+period	100000
+process	100000
+produce	100000
+produces	100000
+pseudo-random	100000
+random	200000
+random.	100000
+randomness	200000
+randomness.	100000
+recurrence	100000
+relation,	100000
+required.	100000
+scientific	100000
+sequence	100000
+sequences	100000
+systems,	100000
+that	300000
+the	400000
+to	100000
+true	200000
+unpredictability	100000
+used	300000
+using	200000
+where	100000
+while	100000
+widely	100000
+with	100000
+
+
+
+jar File: It is a Java archive file that contains precompiled MapReduce example jobs, such as wordcount. You ran the wordcount job from this .jar file to count word occurrences.
+Job Execution: By running hadoop jar, Hadoop processed your input file (LargeFile.txt) in HDFS, executed the WordCount MapReduce job, and stored the result in the specified output directory.
+
+
+
+
+

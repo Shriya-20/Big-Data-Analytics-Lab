@@ -1,0 +1,4 @@
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file
+./mapper.py -mapper 'python3 mapper.py' -file ./reducer.py -reducer 'python3
+reducer.py' -input /user/studentregno/lab2/input.txt -output
+/user/studentregno/lab2/output1

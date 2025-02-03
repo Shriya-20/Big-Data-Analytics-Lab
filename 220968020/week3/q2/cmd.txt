@@ -1,0 +1,205 @@
+bdalab@mcalab04-06:~/BDA/220968020/week3$ hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file ./q2/mapper.py -mapper 'python3 mapper.py' -file ./q2/reducer.py -reducer 'python3 reducer.py' -input /user/220968020/week3/weather_dataset.txt -output /user/220968020/week3/output2
+2025-01-27 16:22:14,682 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [./q2/mapper.py, ./q2/reducer.py, /tmp/hadoop-unjar5358574240409624420/] [] /tmp/streamjob6137657659127678601.jar tmpDir=null
+2025-01-27 16:22:15,197 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at /0.0.0.0:8032
+2025-01-27 16:22:15,316 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at /0.0.0.0:8032
+2025-01-27 16:22:15,446 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/bdalab/.staging/job_1737967367597_0004
+2025-01-27 16:22:15,675 INFO mapred.FileInputFormat: Total input files to process : 1
+2025-01-27 16:22:15,710 INFO mapreduce.JobSubmitter: number of splits:2
+2025-01-27 16:22:15,780 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1737967367597_0004
+2025-01-27 16:22:15,780 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2025-01-27 16:22:15,906 INFO conf.Configuration: resource-types.xml not found
+2025-01-27 16:22:15,907 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2025-01-27 16:22:15,949 INFO impl.YarnClientImpl: Submitted application application_1737967367597_0004
+2025-01-27 16:22:15,970 INFO mapreduce.Job: The url to track the job: http://mcalab04-06:8088/proxy/application_1737967367597_0004/
+2025-01-27 16:22:15,971 INFO mapreduce.Job: Running job: job_1737967367597_0004
+2025-01-27 16:22:20,045 INFO mapreduce.Job: Job job_1737967367597_0004 running in uber mode : false
+2025-01-27 16:22:20,047 INFO mapreduce.Job:  map 0% reduce 0%
+2025-01-27 16:22:24,137 INFO mapreduce.Job:  map 100% reduce 0%
+2025-01-27 16:22:28,169 INFO mapreduce.Job:  map 100% reduce 100%
+2025-01-27 16:22:28,190 INFO mapreduce.Job: Job job_1737967367597_0004 completed successfully
+2025-01-27 16:22:28,252 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=11764
+		FILE: Number of bytes written=964879
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=13684
+		HDFS: Number of bytes written=912
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=3225
+		Total time spent by all reduces in occupied slots (ms)=1453
+		Total time spent by all map tasks (ms)=3225
+		Total time spent by all reduce tasks (ms)=1453
+		Total vcore-milliseconds taken by all map tasks=3225
+		Total vcore-milliseconds taken by all reduce tasks=1453
+		Total megabyte-milliseconds taken by all map tasks=3302400
+		Total megabyte-milliseconds taken by all reduce tasks=1487872
+	Map-Reduce Framework
+		Map input records=1199
+		Map output records=1199
+		Map output bytes=9360
+		Map output materialized bytes=11770
+		Input split bytes=228
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=114
+		Reduce shuffle bytes=11770
+		Reduce input records=1199
+		Reduce output records=114
+		Spilled Records=2398
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=94
+		CPU time spent (ms)=1560
+		Physical memory (bytes) snapshot=896704512
+		Virtual memory (bytes) snapshot=7824310272
+		Total committed heap usage (bytes)=938475520
+		Peak Map Physical memory (bytes)=334221312
+		Peak Map Virtual memory (bytes)=2606915584
+		Peak Reduce Physical memory (bytes)=229801984
+		Peak Reduce Virtual memory (bytes)=2611167232
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=13456
+	File Output Format Counters 
+		Bytes Written=912
+2025-01-27 16:22:28,252 INFO streaming.StreamJob: Output directory: /user/220968020/week3/output2
+
+
+
+output:
+
+
+bdalab@mcalab04-06:~/BDA/220968020/week3$ hdfs dfs -cat /user/220968020/week3/output2/part-00000
+
+1900	46
+1901	48
+1902	49
+1903	35
+1904	46
+1905	35
+1906	32
+1907	49
+1908	44
+1909	38
+1910	47
+1911	48
+1912	44
+1913	43
+1914	49
+1915	49
+1916	18
+1917	35
+1918	49
+1919	42
+1920	47
+1921	47
+1922	45
+1923	41
+1924	49
+1925	48
+1926	49
+1927	47
+1928	48
+1929	35
+1930	48
+1931	37
+1932	33
+1933	43
+1934	47
+1935	40
+1936	48
+1937	44
+1938	43
+1939	48
+1940	49
+1941	49
+1942	24
+1943	45
+1944	39
+1945	47
+1946	48
+1947	41
+1948	42
+1949	48
+1950	41
+1951	48
+1952	49
+1953	43
+1954	46
+1955	47
+1956	48
+1957	49
+1958	34
+1959	45
+1960	44
+1961	35
+1962	46
+1963	27
+1964	42
+1965	35
+1966	48
+1967	41
+1968	47
+1969	47
+1970	49
+1971	42
+1972	49
+1973	49
+1974	49
+1975	46
+1976	40
+1977	49
+1978	48
+1979	31
+1980	48
+1981	49
+1982	45
+1983	38
+1984	44
+1985	48
+1986	48
+1987	43
+1988	49
+1989	47
+1990	44
+1991	49
+1992	48
+1993	45
+1994	38
+1995	48
+1996	47
+1997	49
+1998	48
+1999	46
+2000	49
+2001	45
+2002	45
+2003	30
+2004	48
+2005	48
+2006	47
+2007	47
+2008	46
+2009	43
+2010	47
+2011	42
+2012	45
+2013	49
+
