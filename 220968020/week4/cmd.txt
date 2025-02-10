@@ -1,0 +1,17 @@
+q
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file ./mapper.py -mapper 'python3 ./mapper.py' -file ./reducer.py -reducer 'python3 ./reducer.py' -input /user/220968020/week4/employee_input.txt -output /user/220968020/week4/output/
+
+q1
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file ./mapper1.py -mapper 'python3 ./mapper1.py' -file ./reducer1.py -reducer 'python3 ./reducer1.py' -input /user/220968020/week4/student.txt,/user/220968020/week4/course.txt -output /user/220968020/week4/output1/
+
+
+q2
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file ./mapper2.py -mapper 'python3 ./mapper2.py' -file ./reducer2.py -reducer 'python3 ./reducer2.py' -input /user/220968020/week4/Doc1.txt,/user/220968020/week4/Doc2.txt -output /user/220968020/week4/output2/
+
+
+q3
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar -file ./mapper3.py -mapper 'python3 ./mapper3.py' -file ./reducer3.py -reducer 'python3 ./reducer3.py' -input /user/220968020/week4/inverted_index_data.txt -output /user/220968020/week4/output3/

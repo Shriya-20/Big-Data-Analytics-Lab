@@ -1,0 +1,5 @@
+CSE101,Machine Learning,3
+CSE102,Artificial Intelligence,4
+CSE103,Operating Systems,5
+CSE104,Big Data Analytics,3
+
