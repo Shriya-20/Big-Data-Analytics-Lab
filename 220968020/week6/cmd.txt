@@ -1,0 +1,58 @@
+/\/\/\/\
+
+Nullpointer error: 
+
+hdfs dfs -chmod 777 /temp/hive
+hdfs dfs -chmod 777 /user/hive
+hdfs dfs -chmod 777 /user/hive/warehouse
+hdfs dfs -chmod 777 /user/hive/_resultscache_
+
+\/\/\/\/\
+
+
+bdalab@mcalab04-06:/usr/local/hive$ bin/hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 989cc299-02bf-48cd-ab3b-ba50a456bdc1
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Hive Session ID = 1e4ccd8d-fc6d-4b3f-a7c9-0ad0aa310c66
+hive> CREATE DATABASE logs_db;
+OK
+Time taken: 0.308 seconds
+hive> SHOW DATABASES;
+OK
+default
+logs_db
+Time taken: 2.253 seconds, Fetched: 2 row(s)
+hive> USE logs_db;
+OK
+Time taken: 0.024 seconds
+
+
+
+
+hive> CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     response_time INT,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > LINES TERMINATED BY '\n';
+OK
+Time taken: 0.373 seconds
+hive> LOAD DATA INPATH '/user/220968020/week6/weblogs.csv' INTO TABLE weblogs;
+Loading data to table logs_db.weblogs
+OK
+Time taken: 0.422 seconds
+
+
+
